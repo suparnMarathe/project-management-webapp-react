@@ -21,11 +21,18 @@ function App() {
       };
       return {
         ...prevProjectState,
-        tasks: [...prevProjectState.tasks, newTask],
+        tasks: [newTask, ...prevProjectState.tasks],
       };
     });
   }
-  function handleDeleteTask() {}
+  function handleDeleteTask(id) {
+    setProjectState((prevProjectState) => {
+      return {
+        ...prevProjectState,
+        tasks: prevProjectState.tasks.filter((task) => task.id !== id),
+      };
+    });
+  }
   function handleAddProject() {
     setProjectState((prevProjectState) => {
       return {
